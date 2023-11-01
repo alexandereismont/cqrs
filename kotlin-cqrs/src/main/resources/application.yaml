@@ -1,0 +1,13 @@
+#spring:
+#  datasource:
+#    hikari:
+#      jdbc-url: jdbc:postgresql://localhost:5634/db
+#      username: user
+#      password: user
+#      driver-class-name: org.postgresql.Driver
+
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://postgres@localhost:5634/db
+    username: user
+    password: user
