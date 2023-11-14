@@ -6,8 +6,12 @@
 #      password: user
 #      driver-class-name: org.postgresql.Driver
 
+security:
+  basic:
+    enable: false
+
 spring:
   r2dbc:
-    url: r2dbc:postgresql://postgres@localhost:5634/db
-    username: user
+    url: r2dbc:postgresql://localhost:5634/db
     password: user
+    username: user
