@@ -12,6 +12,6 @@ security:
 
 spring:
   r2dbc:
-    url: r2dbc:postgresql://localhost:5634/db
+    url: r2dbc:postgresql://localhost:5632/db
     password: user
     username: user

@@ -1,11 +1,11 @@
 package com.cqrs.kotlincqrs.cqrs
 
+import com.cqrs.kotlincqrs.commands.Command
 import org.springframework.stereotype.Component
 
 @Component
 class CommandHandlerProvider(private val commandHandlers: List<CommandHandler<*, *>>) {
 
-    // Find the appropriate command handler for a given command type
     suspend fun <R, C> findHandler(command: C): CommandHandler<R, C>? {
         val commandType = command!!::class.java
         return commandHandlers
@@ -14,13 +14,12 @@ class CommandHandlerProvider(private val commandHandlers: List<CommandHandler<*,
             .firstOrNull()
     }
 
-    // Execute a command by finding the appropriate handler and invoking it
-    suspend fun <R, C> handle(command: C): R {
-        val handler = findHandler<R, C>(command)
+    suspend fun <R> handle(command: Command): R {
+        val handler = findHandler<R, Command>(command)
         if (handler != null) {
             return handler.handle(command)
         } else {
-            throw IllegalArgumentException("No command handler found for ${command!!::class.java.simpleName}")
+            throw IllegalArgumentException("No command handler found for ${command::class.java.simpleName}")
         }
     }
 }

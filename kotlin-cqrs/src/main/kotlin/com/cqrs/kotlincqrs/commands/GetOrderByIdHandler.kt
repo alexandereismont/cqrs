@@ -4,9 +4,9 @@ import com.cqrs.kotlincqrs.cqrs.CommandHandler
 import com.cqrs.kotlincqrs.domain.Order
 import org.springframework.stereotype.Component
 
-data class GetOrderById(val orderId: Long)
+data class GetOrderById(val orderId: Long) : Command
 
-@Component
+/*@Component
 class GetOrderByIdHandler : CommandHandler<Order, GetOrderById> {
 
     override suspend fun supports(commandType: Class<*>): Boolean {
@@ -17,4 +17,4 @@ class GetOrderByIdHandler : CommandHandler<Order, GetOrderById> {
         return Order("1", "2")
     }
 
-}
+}*/
