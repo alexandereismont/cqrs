@@ -1,14 +1,12 @@
 package com.cqrs.kotlincqrs.cqrs
 
-import java.util.UUID
-import java.util.function.Consumer
+import java.util.*
 
 interface Event
 
-abstract class AggregateRoot {
+abstract class AggregateRoot(val id: UUID = UUID.randomUUID()) {
 
-    val id: UUID = UUID.randomUUID()
-
+    var version: Int = 0
     private val changes: MutableList<Event> = mutableListOf()
 
     suspend fun getUncommittedChanges() = changes.toList()

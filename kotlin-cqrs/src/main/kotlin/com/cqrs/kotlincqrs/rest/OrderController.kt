@@ -15,8 +15,8 @@ class OrderController(
 ) {
 
     @GetMapping(path = ["{id}"])
-    suspend fun getOrderById(@PathVariable id: Long): Order {
-        return commandHandlerProvider.handle(GetOrderById(id))
+    suspend fun getOrderById(@PathVariable id: UUID): Order {
+        return commandHandlerProvider.handle(command = GetOrderById(id))
     }
 
     @PostMapping
@@ -25,7 +25,7 @@ class OrderController(
     }
 
     @PutMapping("/{id}")
-    suspend fun updateQuantity(@PathVariable id: UUID, @RequestBody quantity: UpdateOrderQuantityDto) : Unit {
+    suspend fun updateQuantity(@PathVariable id: UUID, @RequestBody quantity: UpdateOrderQuantityDto) {
         val command = UpdateOrderQuantityCommand(id = id, quantity = quantity.quantity)
         return commandHandlerProvider.handle(command = command)
     }
