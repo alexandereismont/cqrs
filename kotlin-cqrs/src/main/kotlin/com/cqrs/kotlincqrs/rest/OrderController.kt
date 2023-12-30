@@ -15,8 +15,20 @@ class OrderController(
 ) {
 
     @GetMapping(path = ["{id}"])
-    suspend fun getOrderById(@PathVariable id: UUID): Order {
-        return commandHandlerProvider.handle(command = GetOrderById(id))
+    suspend fun getOrderById(@PathVariable id: UUID): Response {
+        return try {
+            val response: Order = commandHandlerProvider.handle(command = GetOrderById(id))
+            ResponseSuccess(
+                "success",
+                response
+            )
+        } catch (e: Exception) {
+            ResponseError(
+                status = "error",
+                message = e.message,
+                code = 500
+            )
+        }
     }
 
     @PostMapping
