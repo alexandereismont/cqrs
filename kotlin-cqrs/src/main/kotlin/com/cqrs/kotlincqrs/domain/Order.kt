@@ -6,3 +6,9 @@ data class Order(
     val orderStatus: String?,
     val quantity: Int
 )
+
+
+data class ProductTest(
+    val productId: String,
+    val productName: String,
+)
